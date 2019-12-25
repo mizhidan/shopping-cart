@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.cart-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.cart-table {
+    border: 1px solid rgb(146, 146, 146);
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid rgb(146, 146, 146);
+    padding: 10px;
+}
+
+thead {
+    background-color: #EEEEEE;
+}
+
+.total-price {
+    column-span: 4;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="./static/style/index.css" />
+    <title>shopping cart</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div class="cart-content">
+        <table class="cart-table">
+            <caption>文具店购物车</caption>
+            <thead>
+                <tr>
+                    <td>选择</td>
+                    <td>商品名称</td>
+                    <td>商品单价(￥)</td>
+                    <td>商品数量</td>
+                    <td>总价(￥)</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td>全选<input type="checkbox" id="checkAll" name="checkAll"></td>
+                    <td id="total-price" colspan="4"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+  </body>
+  <script type="text/javascript" src="./static/script/index.js"></script>
+</html>
