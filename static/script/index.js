@@ -52,19 +52,19 @@ function shoppingCart() {
     var target = event.target;
     var tdIndex = target.parentNode;
     switch(target.className) {
-      case ("add-item"):
+      case ("add-count"):
         addProduct(tdIndex);
         calcItemSum(tdIndex); 
         calcSum();
         break;
-      case ("reduce-item"):
+      case ("reduce-count"):
         reduceProduct(tdIndex);
         calcItemSum(tdIndex);
-        calculateSum();
+        calcSum();
         break;
       case ("choose"):
         judgeChosenState();
-        calculateSum();
+        calcSum();
         break;
       default:
         break;
@@ -99,18 +99,60 @@ function loadItemInfo(items) {
 }
 
 var itemSum = document.getElementsByName("item-sum");
-var itemCount = document.getElementsByName("item-name");
+var itemCount = document.getElementsByName("item-count");
 var itemPrice = document.getElementsByName("item-price");
+var testChecked = document.getElementsByName("ischoosed");
+var cartSum = document.getElementById("total-price");
 
-function calcItemSum() {
+function calcSum() {
+  var totalCount = 0;
+  var totalPrice = 0;
+  for(var item = 0; item < testChecked.length; item++) {
+    if(testChecked[item].checked) {
+      totalPrice += parseFloat(itemSum[item].innerText),
+      totalCount += parseFloat(itemCount[item].innerText);
+    }
+  }
+  cartSum.innerHTML = `共计<span class="total-count">${totalCount}</span>件商品，¥<span class="total-price">${totalPrice}</span>`;
+}
+
+function calcItemSum(tdIndex) {
   var trIndex = tdIndex.parentNode;
   var index = trIndex.rowIndex - 1;
-  if (productCount[index]) {
+  if (itemCount[index]) {
     var sumPrice = itemSum[index];
     var count = itemCount[index].innerText;
     var price = itemPrice[index].innerText;
     sumPrice.innerText = count * price;
   }
 }
+
+function addProduct(tdIndex) {
+  var count = tdIndex.querySelector("span");
+  count.innerText++;
+}
+
+function reduceProduct(tdIndex) {
+  var count = tdIndex.querySelector("span");
+  if ("1" === count.innerText) {
+    itemList.removeChild(tdIndex.parentNode);
+    judgeChosenState();
+  } else {
+    count.innerText--;
+  }
+}
+
+function judgeChosenState() {
+  var chosenState = true;
+  var item = 0;
+  while (item < testChecked.length && chosenState) {
+    chosenState = testChecked[item].checked; 
+    item++;
+  }
+  if(!itemList.childElementCount) {
+    chosenState = false;
+  }
+  chooseAll.checked = chosenState;
+} 
 
 shoppingCart();
