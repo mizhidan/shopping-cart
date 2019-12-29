@@ -28,3 +28,13 @@ thead {
 .total-price {
     column-span: 4;
 }
+
+.reduce-count {
+    width: 20px;
+    margin: 5px;
+}
+
+.add-count {
+    width: 20px;
+    margin: 5px;
+}
