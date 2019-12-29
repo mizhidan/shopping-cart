@@ -70,6 +70,7 @@ function shoppingCart() {
         break;
     }
   });
+  checkAll.addEventListener("click",checkAllItem);
 }
 
 function loadItemInfo(items) {
@@ -101,14 +102,22 @@ function loadItemInfo(items) {
 var itemSum = document.getElementsByName("item-sum");
 var itemCount = document.getElementsByName("item-count");
 var itemPrice = document.getElementsByName("item-price");
-var testChecked = document.getElementsByName("ischoosed");
+var checkBox = document.getElementsByName("ischoosed");
 var cartSum = document.getElementById("total-price");
+var checkAll = document.getElementById("checkAll");
+
+function checkAllItem() {
+  for(let index = 0; index < cartProducts.length; ++index) {
+    checkBox[index].checked = checkAll.checked;
+  }
+  calcSum;
+}
 
 function calcSum() {
   var totalCount = 0;
   var totalPrice = 0;
-  for(var item = 0; item < testChecked.length; item++) {
-    if(testChecked[item].checked) {
+  for(var item = 0; item < checkBox.length; item++) {
+    if(checkBox[item].checked) {
       totalPrice += parseFloat(itemSum[item].innerText),
       totalCount += parseFloat(itemCount[item].innerText);
     }
@@ -145,14 +154,14 @@ function reduceProduct(tdIndex) {
 function judgeChosenState() {
   var chosenState = true;
   var item = 0;
-  while (item < testChecked.length && chosenState) {
-    chosenState = testChecked[item].checked; 
+  while (item < checkBox.length && chosenState) {
+    chosenState = checkBox[item].checked; 
     item++;
   }
   if(!itemList.childElementCount) {
     chosenState = false;
   }
-  chooseAll.checked = chosenState;
+  checkAll.checked = chosenState;
 } 
 
 shoppingCart();
